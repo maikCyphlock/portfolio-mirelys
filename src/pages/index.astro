@@ -3,7 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-
+import Video from "@/components/Video";
 import "@fontsource-variable/onest";
 ---
 
@@ -12,25 +12,35 @@ import "@fontsource-variable/onest";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="flex flex-col bg-zinc-900 text-zinc-50">
+  <body class="container flex flex-col bg-zinc-900 text-zinc-50">
     <Header title={SITE_TITLE} />
-    <img
-      class="w-[1000px] lg:w-[100vw] absolute -top-0 lg:-top-52 -z-[2]"
-      src="/gradient.svg"
-      alt=""
-    />
-    <main class="container mx-auto">
+    <div class="absolute inset-32 -z-[2] justify-end items-start inline-flex">
+      <div
+        class="w-52 h-96 origin-top-left rotate-[42deg] bg-fuchsia-400/40 rounded-full blur-[100px]"
+      >
+      </div>
+      <div
+        class="w-52 h-96 origin-top-left rotate-[38.42deg] bg-red-400/50 rounded-full blur-[100px]"
+      >
+      </div>
+      <div
+        class="w-52 h-96 origin-top-left rotate-[38.42deg] bg-cyan-400/40 rounded-full blur-[100px]"
+      >
+      </div>
+      <div
+        class="w-52 h-80 origin-top-left rotate-[38.42deg] bg-orange-400/40 rounded-full blur-[100px]"
+      >
+      </div>
+    </div>
+
+    <main class="mx-auto">
       <section>
         <div class="container px-5 py-32 mx-auto">
           <div
             class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto"
           >
-            <h1 class="flex-grow text-5xl text-balance font-thin">
-              <span class="font-bold">
-                🌟Descubre, aprende y comparte con <span class="text-indigo-300"
-                  >Mirelys.</span
-                >
-              </span> Únete al viaje de contenido generado por los usuarios.
+            <h1 class="flex-grow text-5xl text-pretty font-bold text-center">
+              Descubre, aprende y comparte con Mirelys.
             </h1>
           </div>
         </div>
@@ -38,27 +48,83 @@ import "@fontsource-variable/onest";
     </main>
 
     <section
-      class="grid h-[800px] gap-4 grid-cols-1 lg:grid-cols-4 lg:grid-rows-4 container mx-auto w-3/4"
+      class="grid lg:max-h-[600px] gap-4 grid-cols-1 lg:grid-cols-3 lg:grid-rows-3 mx-auto w-3/4"
     >
-      <div class="lg:col-span-2 card">
-        <img src="mirelys-1.jpg" class="aspect-square h-[500px] object-cover" />
-      </div>
-      <div class="card">
-        <img src="mirelys-2.jpg" class="aspect-square h-[300px] object-fill" />
-      </div>
-      <div class="card">
-        <img src="mirelys-1.jpg" class="aspect-square h-[300px] object-fill" />
-      </div>
-      <div class="card lg:col-span-2">hola</div>
-      <div class="card lg:row-span-2">hola</div>
+      <Video
+        videoUrl="video/showcase-2.mp4"
+        client:visible
+        className="lg:col-span-2"
+      >
+        <div class="card">
+          <h1>Brillo de uñas, borsch</h1>
+          <img
+            src="mirelys-1.webp"
+            class="aspect-square w-[700px] object-cover"
+          />
+        </div>
+      </Video>
+      <Video
+        videoUrl="video/showcase-1.mp4"
+        client:visible
+        className="lg:row-span-2"
+      >
+        <div class="card">
+          <h1>Protector Solar</h1>
+          <img
+            src="mirelys-2.webp"
+            class="aspect-square h-[600px] object-cover"
+          />
+        </div>
+      </Video>
+      <Video videoUrl="video/showcase-3.mp4" client:visible>
+        <div class="card">
+          <h1>Promoción para Ecommerce</h1>
+          <img
+            src="mirelys-3.webp"
+            class="aspect-square w-[700px] object-cover"
+          />
+        </div>
+      </Video>
       <div class="card">hola</div>
-      <div class="card">hola</div>
-      <div class="card">hola</div>
-      <div class="card">hola</div>
+    </section>
+    <section class="w-3/4 mx-auto flex flex-col gap-2 my-20 text-lg">
+      <h1 class="text-4xl font-bold mb-10">QUÉ ES EL UGC?</h1>
+      <p>
+        El contenido generado por el usuario (UGC) es una estrategia de
+        marketing cada vez más popular. Se trata de contenido creado por los
+        propios usuarios de un producto o servicio, y puede adoptar muchas
+        formas, como fotos, vídeos, reseñas o publicaciones en redes sociales.
+      </p>
+
+      <p>
+        El UGC tiene una serie de ventajas importantes. En primer lugar, es
+        creíble y auténtico. Los usuarios no tienen ningún incentivo para mentir
+        sobre sus experiencias, por lo que el contenido que generan es percibido
+        como más confiable por los consumidores.
+      </p>
+
+      <p>
+        En segundo lugar, el UGC es emocionalmente atractivo. Los usuarios se
+        conectan con otros que comparten sus intereses y experiencias, por lo
+        que el contenido generado por ellos es más probable que genere
+        engagement.
+      </p>
+
+      <p>
+        Por último, el UGC es económico. Las marcas no tienen que crear su
+        propio contenido, lo que puede ahorrarles tiempo y dinero.
+      </p>
     </section>
     <style>
       .card {
-        @apply flex items-center  justify-center min-h-48 h-full shadow-md rounded-3xl border border-white/20 overflow-hidden;
+        @apply flex items-center  justify-center min-h-48 h-full shadow-md rounded-3xl border border-white/20 overflow-hidden hover:scale-105 ease-in-out transition-all relative;
+
+        & h1 {
+          @apply hidden  w-full h-full p-8 text-zinc-100 backdrop-brightness-50 text-pretty text-5xl absolute z-10;
+        }
+        &:hover h1 {
+          @apply backdrop-blur-lg grid place-content-center;
+        }
       }
     </style>
   </body>
